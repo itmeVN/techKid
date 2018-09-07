@@ -47,7 +47,7 @@ $(document).ready(function(){
         let questionId = $('.answer:first-child').attr('id-data');
         console.log("id:" ,questionId);
         $.ajax({
-            url: 'http://localhost:6969/questionInfor',
+            url: 'http://localhost:6969/questionInfor/' + questionId,
             method: 'GET',
             data: {
                 id : questionId
@@ -63,7 +63,7 @@ $(document).ready(function(){
                 }
             },
 
-            errror: function(err){
+            error: function(err){
                 console.log(err);
             },
         })
