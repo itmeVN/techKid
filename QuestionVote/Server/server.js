@@ -82,7 +82,7 @@ app.put('/answer',(req,res) => {
 });
 
 app.get('/questionInfor/:questionId',(req,res) => {
-    const questionId = req.body.id;
+    const questionId = req.params.quesionId;
     console.log(questionId);
     QuestionModel.findById(questionId,(err, questionFound) => {
         if(err) console.log(err)
