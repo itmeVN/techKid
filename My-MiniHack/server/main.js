@@ -70,6 +70,8 @@ app.put('/games/addround',(req,res) => {
             }
     })
 })
+
+
 app.put('/games/updateScore',(req,res) =>{
     const {id,player,row,newScore} = req.body;
     GameModel.findById(id,
@@ -80,32 +82,34 @@ app.put('/games/updateScore',(req,res) =>{
                 res.status(404).json({ success: 0, error: "No such user!" })
             else
                 {
-                    const newsocre = parseInt(newScore)
+                    const newscore = parseInt(newScore)
                     if(player == 1)
                     {
-                        gamesFound.player1.score[row] =  parseInt(newScore) ;
+                        gamesFound.player1.score[row] = newscore;
                         gamesFound.player1.sops = Total(gamesFound.player1.score);
                     }            
                     else if(player == 2) 
                     {
-                        gamesFound.player2.score[row] =  parseInt(newScore) ;
+                        gamesFound.player2.score[row] =  newscore;
                         gamesFound.player2.sops =Total(gamesFound.player2.score);
                     }
                     else if(player == 3)
                     {
-                        gamesFound.player3.score.score[row]  =   parseInt(newScore) ;
+                        gamesFound.player3.score[row]  =  newscore ;
                         gamesFound.player3.sops =Total(gamesFound.player3.score);
                     }
                     else 
+                    
                     {
-                        gamesFound.player4.score.score[row]  =   parseInt(newScore) ;
+                        gamesFound.player4.score[row]  =  newscore;
                         gamesFound.player4.sops =Total(gamesFound.player4.score);
                     }
                     gamesFound.save((err,gamesUpdated) => {
-                       if(err)  res.status(500).json({ success: 0, error: err })
-                       else
-                        res.send({message:1, games: gamesUpdated});
+                        if(err)  res.status(500).json({ success: 0, error: err })
+                        else
+                         res.send({message:1, games: gamesUpdated});
                    })
+                   
                 }
         });
 })
